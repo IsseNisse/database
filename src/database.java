@@ -10,9 +10,10 @@ public class database {
                     DatabaseLoginData.user, DatabaseLoginData.password);
 
             // Setup statement
+            int x = 1;
             Statement stmt = conn.createStatement();
             // Create query and execute
-            String strSelect = "select title, price, qty from books";
+            String strSelect = "select * from story where id = " + x;
             System.out.println("The SQL statement is: " + strSelect + "\n");
 
             ResultSet rset = stmt.executeQuery(strSelect);
