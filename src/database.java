@@ -18,15 +18,24 @@ public class database {
             System.out.println("The SQL statement is: " + strSelect + "\n");
 
             ResultSet rset = stmt.executeQuery(strSelect);
-            ResultSet linkset = stmt.executeQuery(linksSelect);
 
             // Loop through the result set and print
 
             System.out.println("The records selected are:");
-            int rowCount = 0;
             while(rset.next()) {
                 String title = rset.getString("body");
                 System.out.println(title);
+            }
+            System.out.println("Total number of records = ");
+
+            ResultSet linkset = stmt.executeQuery(linksSelect);
+
+            System.out.println("The records selected are:");
+            int rowCount = 0;
+            while(linkset.next()) {
+                int target_id = linkset.getInt("target_id");
+                String description = linkset.getString("description");
+                System.out.println(target_id + ", " + description);
                 ++rowCount;
             }
             System.out.println("Total number of records = " + rowCount);
