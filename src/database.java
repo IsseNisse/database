@@ -13,20 +13,20 @@ public class database {
             int x = 1;
             Statement stmt = conn.createStatement();
             // Create query and execute
-            String strSelect = "select * from story where id = " + x;
+            String strSelect = "select body from story where id = " + x;
+            String linksSelect = "select target_id, description from links where id = " + x;
             System.out.println("The SQL statement is: " + strSelect + "\n");
 
             ResultSet rset = stmt.executeQuery(strSelect);
+            ResultSet linkset = stmt.executeQuery(linksSelect);
 
             // Loop through the result set and print
 
             System.out.println("The records selected are:");
             int rowCount = 0;
             while(rset.next()) {
-                String title = rset.getString("title");
-                double price = rset.getDouble("price");
-                int    qty   = rset.getInt("qty");
-                System.out.println(title + ", " + price + ", " + qty);
+                String title = rset.getString("body");
+                System.out.println(title);
                 ++rowCount;
             }
             System.out.println("Total number of records = " + rowCount);
